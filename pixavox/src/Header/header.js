@@ -15,7 +15,7 @@ function Header() {
   return (
     <ThemeProvider theme={theme}>
       <AppBar position="static">
-      <Toolbar sx={{ height: '150px'}}>
+      <Toolbar sx={{ height: '9%'}}>
           <Typography variant="h1" sx={{marginLeft: '6%'}}>
             PixaVOX
           </Typography>
