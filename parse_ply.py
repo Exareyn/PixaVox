@@ -7,6 +7,8 @@ def create_datafile(arr_vertex, ply_path):
     """"Create a file.txt with the data using the original name"""
     filename = ply_path[:-4]
     filename = filename + '.txt'
+    filename = filename.rsplit('/', 1)
+    filename = filename[-1]
     print(filename)
     if not os.path.exists("DataFiles"):
         os.makedirs("DataFiles")
