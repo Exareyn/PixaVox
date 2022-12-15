@@ -15,6 +15,5 @@ y = y[:20]
 reg = LinearRegression()
 reg.fit(X, y)
 
-#
 # with open("res.txt", 'w') as o:
 #     o.write(str(reg.predict(1)))

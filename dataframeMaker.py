@@ -11,10 +11,7 @@ def create_datafile(arr_vertex, df, label):
     df.to_csv("dataset.csv")
     
     
-    
-    
-    
-    
+     
     
     
     
