@@ -1,6 +1,7 @@
 import csv
 from plyfile import PlyData as ply
 import numpy as np
+from argparse import ArgumentParser
 from os import path
 from os import listdir
 import os
@@ -9,9 +10,14 @@ DATASETPATH = "Mdl_3D"
 DATASETDIRS = ["point_cloud"]
 FILENAME = "dataset.csv"
 
-def manage_csv(dataset):
+def manage_csv(dataset, arg_new):
     if path.exists(FILENAME):
-        file = open(FILENAME, "w")
+        if arg_new:
+            file = open(FILENAME, "w")
+            # global status 
+            arg_new = False
+        else:
+            file = open(FILENAME, "a")
     else:
         file = open(FILENAME, "x")
 
@@ -21,12 +27,12 @@ def manage_csv(dataset):
 
     file.close()
 
-def get_point_cloud():
-    fp = DATASETPATH + "car_1.ply"
+
+def get_point_cloud(file, arg_new):
 
     """ Take a path as argument and parse the .ply file to get the x,y,z """
     try:
-        plydata = ply.read(fp)
+        plydata = ply.read(file)
     except:
         print('FileError: bad format file')
         raise SystemExit
@@ -36,18 +42,26 @@ def get_point_cloud():
     arr_list = [tuple(l) for l in arr_list]
     arr_vertex = np.zeros(len(arr_list))
     arr_vertex = arr_list
-    print(arr_vertex[0])
-    manage_csv(arr_vertex)
+    manage_csv(arr_vertex, arg_new)
 
-def go_through_dataset(dir):
+def go_through_dataset(dir, arg_new):
     for file in listdir(dir):
         if path.isfile(path.join(dir + '/' + file)) and file.endswith(".ply"):
-            print(file)
+            print("[LOG] - " + file + ":",end='')
+            get_point_cloud(path.join(dir + '/' + file), arg_new)
+            print(" Done")
 
 def go_through_dir():
+    arg_new = manage_args()
     for entry in listdir(DATASETPATH):
-        if path.isdir(path.join(DATASETPATH + '/' + entry)):
-            go_through_dataset(path.join(DATASETPATH + '/' + entry))
+        if path.isdir(path.join(DATASETPATH + '/' + entry)) and entry in DATASETDIRS:
+            go_through_dataset(path.join(DATASETPATH + '/' + entry), arg_new)
+
+def manage_args():
+    parser = ArgumentParser()
+    parser.add_argument('-n', '--new', action='store_true')
+    args = parser.parse_args()
+    return args.new
 
 def main():
     go_through_dir()
