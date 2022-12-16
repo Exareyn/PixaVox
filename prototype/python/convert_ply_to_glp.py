@@ -4,8 +4,8 @@ def use_o3d():
 
     for i in range(100):
         name = str(i)
-        mesh = o3d.io.read_triangle_mesh("GeneratedModels/Pyramid/pyramid" + name + ".ply")
-        o3d.io.write_triangle_mesh("../public/glb/Pyramid/pyramid" + name +".glb", mesh)
+        mesh = o3d.io.read_triangle_mesh("GeneratedModels/Gyroid/gyroid" + name + ".ply")
+        o3d.io.write_triangle_mesh("../public/glb/Gyroid/gyroid" + name +".glb", mesh)
         mesh.compute_vertex_normals()
 #        o3d.visualization.draw_geometries([mesh])
 
