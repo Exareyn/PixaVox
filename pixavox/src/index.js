@@ -10,6 +10,7 @@ import Layout from "./pages/Layout";
 import Home from "./pages/Home/Home";
 import NoPage from "./pages/NoPage";
 import Create from "./pages/Create/Create";
+import ViewModel from "./pages/View/View";
 
 const router = createBrowserRouter([
   {
@@ -32,11 +33,11 @@ const router = createBrowserRouter([
         path: "about",
         element: <Home />,
       },
-      {
-        path: "about",
-        element: <Home />,
-      }
     ],
+  },
+  {
+    path: "view",
+    element: <ViewModel />,
   },
   {
     path: "*",

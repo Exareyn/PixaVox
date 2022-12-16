@@ -1,0 +1,8 @@
+.Button {
+  flex-direction: row;
+  margin: '10px';
+}
+
+.modalStyle .ant-modal-content{
+  background-color: transparent;
+}
