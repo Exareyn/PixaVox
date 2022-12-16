@@ -5,6 +5,7 @@ import { Html, OrbitControls, useGLTF, useTexture, Environment, BakeShadows, Con
 
 import { Modal, Button } from 'antd'
 import './styles.css'
+import { Content } from 'antd/es/layout/layout'
 
 useGLTF.preload('/glb/')
 
@@ -52,9 +53,6 @@ function Dome() {
     const [isPyramidVisible, setIsPyramidVisible] = useState(false)
     const [isCylinderVisible, setIsCylinderVisible] = useState(false)
     const env = 'https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/2k/evening_road_01_2k.hdr'
-    //    const [isButtonVisible, setIsButtonVisible] = useState(false)
-
-
     return (
         <group>
             <mesh>
@@ -62,37 +60,37 @@ function Dome() {
                 <meshBasicMaterial map={texture} side={THREE.BackSide} />
             </mesh>
             <Html position={[0, 0, -15]} center>
-                {!isCubeVisible &&  !isSphereVisible && !isConeVisible &&  !isPrismVisible && !isPyramidVisible &&  !isCylinderVisible && (
-                    <Button type="primary"style={{ background: "#2B55B4" }} shape="round" size='large' onClick={() => setIsSphereVisible(true)}>
-                        Sphere
-                    </Button>
-                )}
-                {!isCubeVisible &&  !isSphereVisible && !isConeVisible &&  !isPrismVisible && !isPyramidVisible &&  !isCylinderVisible && (
-                    <Button type="primary"style={{ background: "#2B55B4" }} shape="round" size='large' onClick={() => setIsCubeVisible(true)}>
-                        Cube
-                    </Button>
-                )}
-                {!isCubeVisible &&  !isSphereVisible && !isConeVisible &&  !isPrismVisible && !isPyramidVisible &&  !isCylinderVisible && (
-                    <Button type="primary"style={{ background: "#2B55B4" }} shape="round" size='large' onClick={() => setIsConeVisible(true)}>
-                        Cone
-                    </Button>
-                )}
-                {!isCubeVisible &&  !isSphereVisible && !isConeVisible &&  !isPrismVisible && !isPyramidVisible &&  !isCylinderVisible && (
-                    <Button type="primary"style={{ background: "#2B55B4" }} shape="round" size='large' onClick={() => setIsPrismVisible(true)}>
-                        Prism
-                    </Button>
-                )}
-                {!isCubeVisible &&  !isSphereVisible && !isConeVisible &&  !isPrismVisible && !isPyramidVisible &&  !isCylinderVisible && (
-                    <Button type="primary"style={{ background: "#2B55B4" }} shape="round" size='large' onClick={() => setIsPyramidVisible(true)}>
-                        Pyramid
-                    </Button>
-                )}
-                {!isCubeVisible &&  !isSphereVisible && !isConeVisible &&  !isPrismVisible && !isPyramidVisible &&  !isCylinderVisible && (
-                    <Button type="primary"style={{ background: "#2B55B4" }} shape="round" size='large' onClick={() => setIsCylinderVisible(true)}>
-                        Cylinder
-                    </Button>
-                )}
-                <Modal bodyStyle={{ width: 1000, height: 500 }} visible={isSphereVisible}  onOk={() => setIsSphereVisible(false)} onCancel={() => setIsSphereVisible(false)}>
+                    {!isCubeVisible &&  !isSphereVisible && !isConeVisible &&  !isPrismVisible && !isPyramidVisible &&  !isCylinderVisible && (
+                        <Button type="primary"style={{margin: "10px", background: "#000000", width: '300px', height: '100px'}} shape="round" size='large' onClick={() => setIsSphereVisible(true)}>
+                            Sphere
+                        </Button>
+                    )}
+                    {!isCubeVisible &&  !isSphereVisible && !isConeVisible &&  !isPrismVisible && !isPyramidVisible &&  !isCylinderVisible && (
+                        <Button type="primary"style={{margin: "10px", background: "#000000", width: '300px', height: '100px'}} shape="round" size='large' onClick={() => setIsCubeVisible(true)}>
+                            Cube
+                        </Button>
+                    )}
+                    {!isCubeVisible &&  !isSphereVisible && !isConeVisible &&  !isPrismVisible && !isPyramidVisible &&  !isCylinderVisible && (
+                        <Button type="primary"style={{margin: "10px", background: "#000000", width: '300px', height: '100px' }} shape="round" size='large' onClick={() => setIsConeVisible(true)}>
+                            Cone
+                        </Button>
+                    )}
+                    {!isCubeVisible &&  !isSphereVisible && !isConeVisible &&  !isPrismVisible && !isPyramidVisible &&  !isCylinderVisible && (
+                        <Button type="primary"style={{margin: "10px", background: "#000000", width: '300px', height: '100px' }} shape="round" size='large' onClick={() => setIsPrismVisible(true)}>
+                            Prism
+                        </Button>
+                    )}
+                    {!isCubeVisible &&  !isSphereVisible && !isConeVisible &&  !isPrismVisible && !isPyramidVisible &&  !isCylinderVisible && (
+                        <Button type="primary"style={{margin: "10px", background: "#000000", width: '300px', height: '100px' }} shape="round" size='large' onClick={() => setIsPyramidVisible(true)}>
+                            Pyramid
+                        </Button>
+                    )}
+                    {!isCubeVisible &&  !isSphereVisible && !isConeVisible &&  !isPrismVisible && !isPyramidVisible &&  !isCylinderVisible && (
+                        <Button type="primary"style={{margin: "10px", background: "#000000", width: '300px', height: '100px' }} shape="round" size='large' onClick={() => setIsCylinderVisible(true)}>
+                            Cylinder
+                        </Button>
+                    )}
+                <Modal className="modalStyle" bodyStyle={{width: '2500px', height: '1150px', left: '100px', position: 'fixed' }}  visible={isSphereVisible}  onOk={() => setIsSphereVisible(false)} onCancel={() => setIsSphereVisible(false)}>
                     <Suspense fallback={null}>
                         <Canvas shadows camera={{ position: [0, 0, 12], fov: 30 }}>
                             <hemisphereLight intensity={0.5} color="white" groundColor="black" />
@@ -104,7 +102,7 @@ function Dome() {
                         </Canvas>
                     </Suspense>
                 </Modal>
-                <Modal bodyStyle={{ backgroundColor: "transparent", width: 1000, height: 500 }} visible={isCubeVisible} onOk={() => setIsCubeVisible(false)} onCancel={() => setIsCubeVisible(false)}>
+                <Modal className="modalStyle" bodyStyle={{width: '2500px', height: '1150px', left: '100px', position: 'fixed' }} visible={isCubeVisible} onOk={() => setIsCubeVisible(false)} onCancel={() => setIsCubeVisible(false)}>
                     <Suspense fallback={null}>
                         <Canvas shadows camera={{ position: [0, 0, 12], fov: 30 }}>
                             <hemisphereLight intensity={0.5} color="white" groundColor="black" />
@@ -116,7 +114,7 @@ function Dome() {
                         </Canvas>
                     </Suspense>
                 </Modal>
-                <Modal bodyStyle={{ width: 1000, height: 500 }} visible={isConeVisible} onOk={() => setIsConeVisible(false)} onCancel={() => setIsConeVisible(false)}>
+                <Modal className="modalStyle" bodyStyle={{width: '2500px', height: '1150px', left: '100px', position: 'fixed' }} visible={isConeVisible} onOk={() => setIsConeVisible(false)} onCancel={() => setIsConeVisible(false)}>
                     <Suspense fallback={null}>
                         <Canvas shadows camera={{ position: [0, 0, 12], fov: 30 }}>
                             <hemisphereLight intensity={0.5} color="white" groundColor="black" />
@@ -128,7 +126,7 @@ function Dome() {
                         </Canvas>
                     </Suspense>
                 </Modal>
-                <Modal bodyStyle={{ width: 1000, height: 500 }} visible={isPrismVisible} onOk={() => setIsPrismVisible(false)} onCancel={() => setIsPrismVisible(false)}>
+                <Modal className="modalStyle" bodyStyle={{width: '2500px', height: '1150px', left: '100px', position: 'fixed' }} visible={isPrismVisible} onOk={() => setIsPrismVisible(false)} onCancel={() => setIsPrismVisible(false)}>
                     <Suspense fallback={null}>
                         <Canvas shadows camera={{ position: [0, 0, 12], fov: 30 }}>
                             <hemisphereLight intensity={0.5} color="white" groundColor="black" />
@@ -140,7 +138,7 @@ function Dome() {
                         </Canvas>
                     </Suspense>
                 </Modal>
-                <Modal bodyStyle={{width: 1000, height: 500 }} visible={isPyramidVisible} onOk={() => setIsPyramidVisible(false)} onCancel={() => setIsPyramidVisible(false)}>
+                <Modal className="modalStyle" bodyStyle={{width: '2500px', height: '1150px', left: '100px', position: 'fixed' }} visible={isPyramidVisible} onOk={() => setIsPyramidVisible(false)} onCancel={() => setIsPyramidVisible(false)}>
                     <Suspense fallback={null}>
                         <Canvas shadows camera={{ position: [0, 0, 12], fov: 30 }}>
                             <hemisphereLight intensity={0.5} color="white" groundColor="black" />
@@ -152,7 +150,7 @@ function Dome() {
                         </Canvas>
                     </Suspense>
                 </Modal>
-                <Modal bodyStyle={{ width: 1000, height: 500 }} visible={isCylinderVisible} onOk={() => setIsCylinderVisible(false)} onCancel={() => setIsCylinderVisible(false)}>
+                <Modal className="modalStyle" bodyStyle={{width: '2500px', height: '1150px', left: '100px', position: 'fixed' }} visible={isCylinderVisible} onOk={() => setIsCylinderVisible(false)} onCancel={() => setIsCylinderVisible(false)}>
                     <Suspense fallback={null}>
                         <Canvas shadows camera={{ position: [0, 0, 12], fov: 30 }}>
                             <hemisphereLight intensity={0.5} color="white" groundColor="black" />
